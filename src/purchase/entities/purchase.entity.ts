@@ -3,7 +3,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -27,7 +27,6 @@ export class Purchase {
   })
   price: string;
 
-  @ManyToOne(() => Good, (good) => good.id)
-  @JoinColumn({ name: 'goodId' })
+  @OneToMany(() => Good, (good) => good.purchase, { onDelete: 'SET NULL' })
   good: Good;
 }

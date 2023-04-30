@@ -1,12 +1,5 @@
 import { Good } from 'src/good/entities/good.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Storage {
@@ -40,10 +33,6 @@ export class Storage {
   })
   capacity: string;
 
-  @ManyToOne(() => Storage, (storage) => storage.id)
-  @JoinColumn({ name: 'storageId' })
-  storage: Storage;
-
-  @OneToMany(() => Good, (good) => good.storage)
+  @OneToMany(() => Good, (good) => good.storage, { onDelete: 'SET NULL' })
   goods: Good[];
 }

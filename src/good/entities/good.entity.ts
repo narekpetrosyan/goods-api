@@ -38,10 +38,13 @@ export class Good {
   @Column({ name: 'quantity', type: 'int', nullable: false })
   quantity: number;
 
-  @ManyToOne(() => Storage, (storage) => storage.id)
-  @JoinColumn({ name: 'storageId' })
+  @ManyToOne(() => Storage, (storage) => storage.goods, {
+    onDelete: 'SET NULL',
+  })
+  @JoinColumn({ name: 'storage_id' })
   storage: Storage;
 
-  @OneToMany(() => Purchase, (purchase) => purchase.good)
-  purchases: Purchase[];
+  @ManyToOne(() => Purchase, (purchase) => purchase.good)
+  @JoinColumn({ name: 'purchase_id' })
+  purchase: Purchase;
 }
