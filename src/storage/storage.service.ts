@@ -23,7 +23,7 @@ export class StorageService {
       city: faker.address.city(),
       address: `${faker.address.city()}, ${faker.address.street()}`,
       phone: faker.phone.number('501-###-###'),
-      capacity: faker.random.numeric(),
+      capacity: faker.datatype.number({ min: 50000 }).toString(),
     });
     return await this.storageRepository.save(creation);
   }
