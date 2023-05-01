@@ -1,20 +1,20 @@
 import { Controller, Get, Post } from '@nestjs/common';
-import { CustomerService } from './customer.service';
+import { AirportService } from './airport.service';
 
-@Controller('customer')
-export class CustomerController {
-  constructor(private readonly customerService: CustomerService) {}
+@Controller('airport')
+export class AirportController {
+  constructor(private readonly airportService: AirportService) {}
 
   @Get('/')
   async getAll() {
-    return await this.customerService.getAll();
+    return await this.airportService.getAll();
   }
 
   @Post('/seed-fake-data')
   async seedFakeData() {
     try {
-      for (let i = 0; i < 10; i++) {
-        await this.customerService.seedFakeData();
+      for (let i = 0; i < 100; i++) {
+        await this.airportService.seedFakeData();
       }
       return {
         success: true,

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-import { CustomerModule } from './customer/customer.module';
-import { PurchaseModule } from './purchase/purchase.module';
-import { GoodModule } from './good/good.module';
-import { StorageModule } from './storage/storage.module';
+import { AirportModule } from './airport/airport.module';
+import { FlightModule } from './flight/flight.module';
+import { FlightScheduleModule } from './flight_schedule/flight_schedule.module';
+import { PassengerModule } from './passenger/passenger.module';
+import { BookingModule } from './booking/booking.module';
 
 @Module({
   imports: [
@@ -18,10 +18,11 @@ import { StorageModule } from './storage/storage.module';
       synchronize: true,
       entities: ['./**/*.entity.js'],
     }),
-    CustomerModule,
-    PurchaseModule,
-    GoodModule,
-    StorageModule,
+    AirportModule,
+    FlightModule,
+    FlightScheduleModule,
+    PassengerModule,
+    BookingModule,
   ],
 })
 export class AppModule {}
