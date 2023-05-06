@@ -1,9 +1,9 @@
 import { AirportEntity } from 'src/airport/entity/aitport.entity';
 import { FlightScheduleEntity } from 'src/flight_schedule/entity/flight_schedule.entity';
 import {
+  Column,
   Entity,
   JoinColumn,
-  JoinTable,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -13,8 +13,11 @@ export class FlightEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ name: 'to' })
+  to: string;
+
   @ManyToOne(() => FlightScheduleEntity, (schedule) => schedule.flight)
-  @JoinTable({ name: 'schedule_id' })
+  @JoinColumn({ name: 'schedule_id' })
   schedule: FlightScheduleEntity;
 
   @ManyToOne(() => AirportEntity, (airport) => airport.flight, {

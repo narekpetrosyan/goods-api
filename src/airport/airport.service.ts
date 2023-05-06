@@ -12,7 +12,7 @@ export class AirportService {
   ) {}
 
   async getAll() {
-    return await this.airportRepository.find();
+    return await this.airportRepository.find({ take: 10 });
   }
 
   async seedFakeData() {
