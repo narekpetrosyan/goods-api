@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Purchase } from 'src/purchase/entities/purchase.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({})
 export class Customer {
@@ -10,4 +11,7 @@ export class Customer {
 
   @Column({ name: 'address', type: 'varchar' })
   address: string;
+
+  @OneToMany(() => Purchase, (purchase) => purchase.customer)
+  purchases: Purchase[];
 }

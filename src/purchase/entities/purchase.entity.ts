@@ -1,8 +1,10 @@
+import { Customer } from 'src/customer/entities/customer.entity';
 import { Good } from 'src/good/entities/good.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -29,4 +31,8 @@ export class Purchase {
 
   @OneToMany(() => Good, (good) => good.purchase, { onDelete: 'SET NULL' })
   good: Good;
+
+  @ManyToOne(() => Customer, (customer) => customer.purchases)
+  @JoinColumn({ name: 'customer_id' })
+  customer: Customer;
 }
